@@ -125,8 +125,9 @@ class Chain:
 	#Get function for lenChars
 	def getLenChars(self):
 		length = 0
-		for link in self.links:
-			length += len(link.getWord())
+		for link in self.links[:-1]:
+			length += (len(link.getWord()) + 1)
+		length += len(self.links[-1].getWord())
 		return length
 
 class Markov:

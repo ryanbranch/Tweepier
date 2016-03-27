@@ -4,6 +4,8 @@ import math
 CORPORA_FILE = "corpora.txt"
 CORPUS_OUT_PREFIX = "corpus_"
 CORPUS_OUT_SUFFIX = ".txt"
+
+#NOTE: This should be the same as what is specified in bird.py
 FILENAMES_FILE = "corpus_filenames.txt"
 
 #The target number of lines from CORPORA_FILE to include in a single corpus

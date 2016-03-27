@@ -1,6 +1,9 @@
 __author__ = 'Ryan Branch'
 import random
 
+#Defines punctuation marks which signal the end of a sentence
+TERMINAL_PUNCTUATION = [".", "?", "!"]
+
 #A link in the Markov chain
 class Link:
 
@@ -183,10 +186,16 @@ class Markov:
 			return True
 
 	#Picks a random phrase of length lengthIn out of the corpus
+	#Makes sure that the first word is the start of a sentence
 	def getSeed(self, lengthIn):
 		bodyWords = self.corpus.split()[:((lengthIn + 0) * -1)] #NOTE: Does this 0 need to be higher?
 		outSeed = ""
 		choiceIndex = random.randint(0,(len(bodyWords) - 1))
+
+		#Goes through the while loop until the randomly selected word is the beginning of a sentence
+		while bodyWords[choiceIndex - 1][-1] not in TERMINAL_PUNCTUATION:
+			choiceIndex = random.randint(0,(len(bodyWords) - 1))
+
 		for i in range(lengthIn - 1):
 			outSeed += bodyWords[choiceIndex + i]
 			outSeed += " "
@@ -280,3 +289,11 @@ class Markov:
 			else:
 				return theChain
 		return theChain
+
+	#Set function for bookshelf
+	def setBookshelf(self, bookshelfIn):
+		self.bookshelf = bookshelfIn
+
+	#Get function for bookshelf
+	def getBookshelf(self):
+		return self.bookshelf
